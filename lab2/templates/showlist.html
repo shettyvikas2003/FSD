@@ -1,0 +1,20 @@
+<html><head>
+    <style>
+        body{
+            background-color:red;
+            color:blue
+        }
+    </style>
+    <body>
+        <h1>Unordered fruits List</h1>
+      <ul>  {% for fruits in fruitsnew%}
+        <li>{{fruits}} </li>
+        {% endfor %}
+      </ul>
+      <h1>ordered student List </h1>
+      <ol>  {% for student in student_namenew%}
+        <li>{{student}}</li>
+        {% endfor %}
+      </ol>
+    </body>
+    </html>

@@ -1,0 +1,18 @@
+<html>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script></script>
+    <body>
+        Expression
+        <input type="text" id="t1"><span id="res"></span><br>
+        <input type="button" id="exprbtn" value="calculate">
+        <body>
+            <script>
+                $(document).ready(function(){
+                    $("#exprbtn").click(function(){
+                        var expr=$("#t1").val();
+                        res=eval(expr)
+                        $("#res").html(res)
+                    });
+
+                });
+            </script>
+            </html>

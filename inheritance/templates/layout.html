@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        nav a:hover {
+            color: lightgray;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/Home">Home</a>
+        <a href="/Aboutus">About Us</a>
+        <a href="/Contact">Contact</a>
+    </nav>
+    <section>
+        {% block content %}{% endblock %}
+    </section>
+    <footer>
+        <hr>
+        &copy; Developed by Vikas J Shetty
+    </footer>
+</body>
+</html>

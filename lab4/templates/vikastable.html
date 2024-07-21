@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <h1>Student Table</h1>
+        <table border="1">
+            <tr>
+                <th>Student name</th>
+                <th>Subject code</th>
+            </tr>
+
+        {%for std in l%}
+        {%if forloop.counter|divisibleby:"2"%}
+        <tr>
+            <td style="background-color:lightgreen">{{std.sname|upper}}</td>
+            <td style="background-color:lightgreen">{{std.scode}}</td>
+        </tr>
+        {%else%}
+        <tr>
+            <td>{{std.sname|upper}}</td>
+            <td>{{std.scode}}</td>
+        </tr>
+        {%endif%}
+        {%endfor%}
+    </table>
+    </body>
+    </html>
