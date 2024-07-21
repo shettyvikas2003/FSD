@@ -1,0 +1,42 @@
+{%load static%}
+<html>
+    <script src="{% static 'js/jquery-3.7.1.min.js'%}"></script>
+    <body>
+        <form method="post" action="">
+            {%csrf_token%}
+            Student Name
+            <select name="sname" id="sname">
+                {%for student in students%}
+                <option value="{{student.id}}">{{student.student_name}}</option>
+                {%endfor%}
+            </select>
+            <br>
+            Course Name
+            <select name="cname" id="cname">
+                {%for course in courses%}
+                <option value="{{course.id}}">{{course.course_name}}</option>
+                {%endfor%}
+            </select><br>
+                <input type="submit" value="Enroll" id="ebtn">
+                <span id="ans"></span>
+            </form>
+        
+        <script>
+            $(document).ready(function(){
+                $("#ebtn").click(function(){
+                    var sname=$("#sname").val();
+                    var cname=$("#cname").val();
+                    $.ajax({
+                        type: "POST"
+                        url: "/regs/"
+                        data:{sname:sname,cname:cname,csrfmiddlewaretoken:"{{csrf_token}}"},
+                        success:function(response){
+                            $("#ans").html(response)
+                        }
+
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,25 @@
+<html>
+    <body>
+        {% if student_list%}
+        <table border="1">  
+            <tr>
+                <th>USN</th>
+                <th>Name</th>
+                <th>Course</th>
+            </tr>
+            {% for student in student_list%}
+            <tr>
+                <td><a href="/stddetail/{{student.pk}}">{{student.student_usn}}</td>
+                <td>{{student.student_name}}</td>
+                <td>{% for course in student.enrolment.all%}
+                    {{course.course_name}}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <h1>No Student Found</h1>
+        {% endif %}
+    </body>
+    </html>

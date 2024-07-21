@@ -1,0 +1,33 @@
+<html>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script></script>
+    <body>
+        <form method="post" action="">
+            {%csrf_token%}
+            Course Name
+            <select name="cname" id="cname">
+                {%for course in courses%}
+                <option value="{{course.id}}">{{course.course_name}}</option>
+                {%endfor%}
+            </select>
+                <input type="submit" value="search" onclick="stdlist.html" id="ebtn">
+                <span id="ans"></span>
+        </form>
+        
+        <script>
+            $(document).ready(function(){
+                $("#ebtn").click(function(){
+                    var cname=$("#cname").val();
+                    $.ajax({
+                        type: "POST"
+                        url: "/displaystd/"
+                        data:{cname:cname,csrfmiddlewaretoken:"{{csrf_token}}"},
+                        success:function(response){
+                            $("#ans").html(response)
+                        }
+
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>
