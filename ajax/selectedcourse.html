@@ -1,0 +1,54 @@
+<html>
+<body>
+<h1>Students enrolled</h1>
+
+<form action='.' method='post'>
+    {% csrf_token %}
+    <select id="course" name="cname" >
+        {% for c in courses %}
+            <option value="{{ c.id }}">{{ c.course_name }}</option>
+        {% endfor %}
+    </select>
+    <span id="ans"></span>
+    <input type='submit' value="Search" id="ebtn">
+        {% comment %} {% if students%}
+        <br>
+        <table border>
+            <tr><th>Students name</th>
+                <th>USN</th>
+                <th>SEM</th></tr>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.student_name }} </td>
+                <td>{{ student.student_usn }} </td>
+                <td>{{ student.student_sem }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% endif %} {% endcomment %}
+</form>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>   
+
+    <script>+
+        $(document).ready(function(){
+            $(#ebtn).click(function(){
+                var cname = $("#course").val();
+                $.ajax({
+                    type: 'POST',
+                    url: "/ajaxdisplay/",
+                    data:{cname:cname, csrfmiddlewaretoken:"{{csrf_token}}"},
+                    success: function(response){
+                        $("#ans").html(response)
+                    }
+                });
+
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>

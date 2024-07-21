@@ -1,0 +1,42 @@
+<html>
+<body>
+    <form action='.' method='post'>
+        {% csrf_token %}
+        <label for="student">Select Student:</label>
+        <select id="student" name="sname" id="sname">
+            {% for s in students %}
+                <option value="{{ s.id }}">{{ s.student_name }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="course">Select Course:</label>
+        <select id="course" name="cname" id="cname">
+            {% for c in courses %}
+                <option value="{{ c.id }}">{{ c.course_name }}</option>
+            {% endfor %}
+        </select>
+        <span id="ans"></span>
+        <input type='submit' id="ebtn">
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>   
+
+    <script>
+        $(document).ready(function(){
+            $(#ebtn).click(function(){
+                var sname = $("#sname").val();
+                var cname = $("#cname").val();
+                $.ajax({
+                    type: 'POST',
+                    url: "/regwithajax/",
+                    data:{sname:sname,cname:cname, csrfmiddlewaretoken:"{{csrf_token}}"},
+                    success: function(response){
+                        $("#ans").html(response)
+                    }
+                });
+
+            });
+        });
+    </script>
+</body>
+</html>
